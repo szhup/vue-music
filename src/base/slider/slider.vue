@@ -42,7 +42,14 @@
                 if(this.autoPlay){
                     this._play()
                 }
-            },20)
+            },20);
+            window.addEventListener('resize',()=>{
+                if(!this.slider){
+                    return
+                }
+                this._setSliderWidth(true);
+                this.slider.refresh()
+            })
         },
         methods:{
             _setSliderWidth(isResize){
@@ -74,8 +81,7 @@
                         speed: 400
                     },
                     snapThreshold: 0.3,
-                    snapSpeed: 400,
-                    click: true
+                    snapSpeed: 400
                 });
                 this.slider.on('scrollEnd', () => {
                     let pageIndex = this.slider.getCurrentPage().pageX;
@@ -101,6 +107,9 @@
                     this.slider.goToPage(pageIndex, 0, 400)
                 }, this.interval)
             }
+        },
+        destroyed(){
+            clearTimeout(this.timer)
         }
     }
 </script>

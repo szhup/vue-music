@@ -6,6 +6,10 @@ import router from './router'
 import 'common/stylus/index.styl'
 Vue.config.productionTip = false;
 import fastcick from 'fastclick'
+import VueLazyload from 'vue-lazyload'
+Vue.use(VueLazyload,{
+   loading:require('common/image/default.png')
+});
 fastcick.attach(document.body);
 /* eslint-disable no-new */
 new Vue({
